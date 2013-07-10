@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if not worker.picture %}{% else%}
+		 <img src=" {{MEDIA_URL}}{{worker.picture}}" width="250" height="250">
+{%endif %} 
+
+	<table>
+	<tr>
+		<th>Brugnavn</th><th>fornavn</th><th>Efternavn</th><th>selv-beskrivelse</th><th>Type</th><th>Kontakt info</th>
+	</tr>
+	<tr>
+		<td>{{worker.username}}</td><td>{{worker.first_name}}</td><td>{{worker.last_name}}</td><td>{{worker.description}}</td>
+		<td>{% for g in worker.genre.all %} {{g}} {% endfor %}</td>
+		{% if user.is_authenticated %} <td>{{worker.email}}</br>Tlf:{{worker.phone}}</td>
+		</tr>
+		{% else %} <td><a href="/login/{{job.id}}"> Log in her for at se kontakt information</a></td></tr>
+		{% endif %}
+	
+	</table>
+{% endblock %}

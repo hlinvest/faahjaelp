@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock%}
+{% block content %}
+<div class="form">
+	<form action="" method="post">
+	{% csrf_token %} <!-- it is a secrete user side specified token in all form submission and side-effect URLs to prevent cross site request forgeries -->
+	<!--  we can use form.as_p here but the field names will be in English and there will be only one password field. adn password is viewable.-->
+		{% if form.username.errors %}  <div class="error">{{form.username.errors}}</div>  {%endif%}
+		<p><label for="username" >Brugnavn:</label> {{form.username}}</p>
+		
+		{% if form.password.errors %}  <div class="error">skriv en gyldig password</div>  {%endif%}
+		<p><label for="password">Password:</label> {{form.password}} </p>
+		
+		{% if form.password2.errors %}  <div class="error">to password er ikke ens</div>  {%endif%}
+		<p><label for="id_password2">Gentast password:</label> {{form.password2}}</p>
+		
+		{% if form.email.errors %}  <div class="error">skriv en gyldig email</div>  {%endif%}
+		<p><label for="id_email">Email:</label> {{form.email}}</p>
+		
+		<p><label for="id_description">Beskriv lidt om dig selv:</label></p>
+		<p> {{form.description}}</textarea></p>
+		
+		{% if form.phone.errors %}  <div class="error">indtast et gyldig telefon nummer  </div>{%endif%}
+		<p><label for="id_phone">Phone:{{form.phone}}</p>
+		
+		{% if form.isWorker.errors %}  <div class="error"> sæt flurben her</div>{%endif%}
+		<p><label for="id_isWorker">Vil du registrere dig selv som en der tilbyder både arbjede og arbjedstjenester:</label> {{form.isWorker}}</p> 
+		{% if form.keyword.errors %}  <div class="error"> Hold "Ctrl" (eller "Æbletasten" på Mac) nede for at vælge mere end en.</div>{%endif%}
+		<p><label for="keyword"> Hvis du leder efter job, så kan du vælge hvilken jobtype du leder efter</label></br>
+		{{form.keyword}}</p>
+	
+				
+		
+		{% if form.errors %} <div class="error">{{form.errors}} Vær at venlig at indtaste korrekt information</div> {%endif%}
+		<input type="submit" alt="register", value="register">
+	</form>
+</div>
+{% endblock%}

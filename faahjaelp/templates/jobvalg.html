@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{job.title}}
+{% endblock %}
+
+{% block content %}
+
+<table>
+<tr>
+	<th>Title</th><th>Operatør</th><th>Address</th><th>Startid</th><th>Sluttid</th><th>beskivelse</th><th>belønning</th><th>Kontakt info</th>
+</tr>
+<tr>
+	<td>{{job.title}}</td><td>{{job.creator}}</td><td>{{job.location}}</td><td>{{job.start_time}}</td>
+	<td>{{job.end_time}}</td><td>{{job.description}}</td><td>{{job.reward}}</td>
+	{% if user.is_authenticated %} <td>{{customer.email}}</br>Tlf:{{customer.phone}}</td>
+</tr>
+		{% if not job.picture %}{% else%}
+		 <img src=" {{MEDIA_URL}}{{job.picture}}" width="250" height="250">
+	 	{%endif %} 
+	{% else %} <td><a href="/login/{{job.id}}"> Log in her for at se kontakt information</a></td></tr>
+	{% endif %}
+
+</table>
+{% endblock %}

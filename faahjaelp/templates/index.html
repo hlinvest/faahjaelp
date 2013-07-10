@@ -1,0 +1,27 @@
+{%extends "base.html" %}
+
+{% block title %}
+velkom til Fåhjælp.dk
+{% endblock %}
+
+{% block content %} 
+<h1>Tilgængelige job  lige nu {% if jobtype %}i {{jobtype}} {% endif %}</h1>
+<table >
+<tr>
+	<th>Tjeneste</th>
+	<th>Operatør</th>
+	<th>Start tid</th>
+	<th>Slut tid</th>
+</tr>	
+{% for job in jobs %}
+ <tr>
+   		<td><a href="/jobvalg/{{job.id}}/">{{job.title}}</a></td>
+	    <td>{{job.creator}}</td>
+	    <td>{{job.start_time}}</td>
+	    <td>{{job.end_time}}</td>
+  </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+

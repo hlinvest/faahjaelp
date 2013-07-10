@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block typemenu %}
+	   <ul id="nav">
+        	<li><a href="/arbejder/"> dem der tilbyder hjælper</a></li>
+	        {% for j in all_job_genres %}
+	        	<li><a href= "/arbejder/{{j.genre}}/">{{j.genre}}</a></li>
+	        {% endfor %}
+	     </ul>
+{% endblock %}
+
+{% block content %}
+
+<table >
+<tr>
+	<th>Hvem</th>
+	<th>selv deskrivelse</th>
+</tr>	
+{% for w in worker %}
+ <tr>
+   		<td><a href="/arbejder/bruger/{{w.slug}}">{{w.username}}</a></td>
+	    <td>{% for  g in w.genre.all %} {{g}} {% endfor %} </td>
+ </tr>
+{% endfor %}
+</table>
+{% endblock%}

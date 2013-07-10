@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+{% block title%}
+ {{text}}
+ {% endblock %}
+ {% block content %} 
+<div class="form">
+	<form action="" method="post" enctype="multipart/form-data" >
+	{% csrf_token %} 
+		{% if form.title.errors %}  <div class="error">{{form.title.errors}}</div>  {%endif%}
+		<p><label for="title" >Overskrift:</label> {{form.title}}</p>
+		
+		{% if form.genre.errors %}  <div class="error">{{form.genre.errorss}}</div>  {%endif%}
+		<p><label for="genre">Type:</label> {{form.genre}}  Hold "Ctrl" (eller "Æbletasten" på Mac) nede for at vælge mere end en.</p>
+		
+		{% if form.location.errors %}  <div class="error">Skriv en addresse</div>  {%endif%}
+		<p><label for="location">Addresse:</label> </p><p>{{form.location}}</p>
+		
+		{% if form.start_time.errors %}  <div class="error">{{form.start_time.error}}</div>  {%endif%}
+		<p><label for="start_time">Start tid:</label> {{form.start_time}} åååå-mm-dd tt:mm</p>
+		
+		{% if form.end_time.errors %}  <div class="error">{{form.end_time.error}}</div>  {%endif%}
+		<p><label for="end_time">Slutt tid:</label> {{form.end_time}} åååå-mm-dd tt:mm</p>
+		
+		{% if form.reward.errors %}  <div class="error">Skriv hvad du vil tilbyde personen som udfører jobbet, det behøver ikke at være penge</div>  {%endif%}
+		<p><label for="reward">skriv hvad vil du give for person som udfører jobbet, det behøver ikke at være penge:</label>{{form.reward}}</p>
+		
+		{% if form.description.errors %}  <div class="error"> Mangler beskrivelse</div>{%endif%}
+		<p><label for="description">Beskriv jobbet</label></br> {{form.description}}</p> 
+		
+		{% if form.isActive.errors %}  <div class="error"> Sæt flueben her</div>{%endif%}
+		<p><label for="isAtive">Aktiver jobbet, så brugerne kan se det:</label> {{form.isActive}}</p> 	
+		
+		{% if form.picture.errors %}  <div class="error">vælg et gyldigt billede  </div>{%endif%}
+		<p><label for="id_picture">Billede:</label>{{form.picture}}</p>		
+		
+		{% if form.errors %} <div class="error">{{form.errors}} Vær at venlig at indtaste korrekt information</div> {%endif%}
+		
+	<input type="submit" name="change" value='Ændre'>
+	<input type="submit" name="delete" value='Slet jobbet'>
+	</form>
+</div>
+{% endblock %}

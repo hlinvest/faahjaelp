@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+
+{% block title %}
+{{customer.username}}
+{% endblock %}
+
+{% block content %}
+<h2>Hey, {{customer.username}}</h2>
+
+{{customer.email}}
+
+{% if not customer.picture %}
+{% else%}
+<img src="{{MEDIA_URL}}{{customer.picture}}" width="200" height="150">
+
+{% endif %}
+</br>
+	<a href="edit/{{customer.slug}}/"> Rediger din profil her</a></Br>
+	<a href="edit_pic/{{customer.slug}}/"> Rediger dit profil billede her</a> </br>
+	<a href="/profile/addJob/">  Tilføjle et nyt job    </a></br>
+		<h4>Rediger job som du tibyder:</h4>
+		{% for j in job %}
+		 <a href="editjob/{{j.id}}/"> {{j.title}}</a></br>
+		 {% endfor %}
+	 
+ {% endblock %}
+</body>
+</html>

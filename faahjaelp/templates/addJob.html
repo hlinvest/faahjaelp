@@ -1,0 +1,48 @@
+{%extends "base.html" %}
+
+{% block title %}
+Tilføj job
+{% endblock %}
+
+{% block content %}
+<div class="form">
+	<form action="" method="post" enctype="multipart/form-data" >
+	{% csrf_token %} 
+
+		Brugnavn: {{customer.username}} </br>
+		{{text}}
+		
+		{% if form.title.errors %}  <div class="error">{{form.title.errors}}</div>  {%endif%}
+		<p><label for="title" >Title:  </label>{{ form.title}} <p>
+		
+		{% if form.genre.errors %}  <div class="error">{{form.genre.errorss}}</div>  {%endif%}
+		<p><label for="genre">Type:</label></p>
+		<p>Hold "Ctrl" (eller "Æbletasten" på Mac) nede for at vælge mere end en</p>
+		 <P>{{form.genre}}  </p>
+		
+		{% if form.location.errors %}  <div class="error">{{form.location.errors}}</div>  {%endif%}
+		<p><label for="location" >Addresse:  </label></p><p>{{ form.location}} </p>
+		
+		{% if form.start_time.errors %}  <div class="error">{{form.start_time.error}}</div>  {%endif%}
+		<p><label for="start_time">Start tid:</label> {{form.start_time}} åååå-mm-dd tt:mm</p>
+		
+		{% if form.end_time.errors %}  <div class="error">{{form.end_time.error}}</div>  {%endif%}
+		<p><label for="end_time">Slutt tid:</label> {{form.end_time}} åååå-mm-dd tt:mm</p>
+		
+		{% if form.description.errors %}  <div class="error">Beskiver jobbet:</div>  {%endif%}
+		<p><label for="description">Beskirv jobbet:</label></p> <p> {{form.description}}</p>
+		
+		<p><label for="reward">Skriv hvad vil du tilbyde personen som udfører jobbet, det behøver ikke at være penge</label> {{form.reward}}</p>
+		
+		{% if form.isActive.errors %}  <div class="error"> Sæt flueben her</div>{%endif%}
+		<p><label for="isActive">Aktiver et job, så brugerne kan se det:</label> {{form.isActive}}</p>
+	
+		{% if form.picture.errors %}  <div class="error">vælg et gyldigt billede  </div>{%endif%}
+		<p><label for="id_picture">Billede:</label>{{form.picture}}</p>
+		
+		{% if form.errors %} <div class="error">{{form.errors}} Vær at venlig indtaste korrekt information</div> {%endif%} 
+		  
+		<p><input type="submit"  value="Tilføj"></p>
+		</form>
+		<div class='note'>{{text}}</div>
+{% endblock%}
