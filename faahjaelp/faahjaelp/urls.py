@@ -4,7 +4,6 @@ from django.contrib import admin
 from faahjaelp import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.simple import direct_to_template
 admin.autodiscover()                                    #used admin.autodiscover() to automatically load the INSTALLED_APPS admin.py modules
 
 urlpatterns = patterns('customer.views',    #avoid redundancy                     

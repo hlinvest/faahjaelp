@@ -13,7 +13,7 @@ class RegiForm(ModelForm):
     keyword=forms.ModelMultipleChoiceField(required=False, queryset=JobGenre.objects.all())
     class Meta:
         model=Customer
-        exclude=('picture','last_login', 'id_verified','slug','date_joined')
+        exclude=('picture','last_login', 'id_verified','slug','date_joined','genre')
         
     def clean_username(self):
         username=self.cleaned_data['username']
@@ -30,6 +30,13 @@ class RegiForm(ModelForm):
         except Customer.DoesNotExist:
             return email
         raise forms.ValidationError("den email er optaget.")
+      
+    def clean_password(self):
+        password=self.cleaned_data.get('password',None)
+        print password
+        if len(password)<6:
+            raise forms.ValidationError('password skal minimun være 6 tegn')
+        return password
         
     def clean(self):
         password=self.cleaned_data.get('password',None)                                                       #instead of use cleaned_data, use get here to avoid exception when nothing is return, none is the default value
@@ -94,6 +101,7 @@ class Picture(forms.Form):
 class LoginForm(forms.Form):                                                                                      # here doesn't need to extend any model
         username=forms.CharField(label=(u'username'))
         password=forms.CharField(label=(u'password'), widget=forms.PasswordInput(render_value=False))
+      
         
 
          

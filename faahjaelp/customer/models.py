@@ -12,7 +12,7 @@ class Comment(models.Model):
         
 
 
-class Customer(User):                                                      # i weas try to make a customer table before without dependent to User table
+class Customer(User):                                                      # i was try to make a customer table before without dependent to User table
     slug=models.SlugField(unique=True)
     description=models.TextField(null=True)
     phone=models.IntegerField(null=True)
