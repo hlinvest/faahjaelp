@@ -9,8 +9,11 @@ from django.http import HttpResponseRedirect, HttpResponse
 from customer.models import Customer
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
 
 def index(request, jobtype=None):
+
+    
     #jobs=Job.objects.exclude(end_time__lte =datetime.now(), isActive=True) # gte greater, lte less
     if jobtype is None:
         jobs=Job.objects.filter( end_time__gte =datetime.now(), isActive=True).order_by('start_time')

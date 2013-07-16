@@ -32,6 +32,12 @@ urlpatterns+= patterns('job.views',
      (r'editjob/(?P<jobid>.*)/$', 'editJob'),
      (r'^jobvalg/(?P<jobid>.*)/$','jobValg'),
     (r'^job/(?P<jobtype>[\w|\W]+)/$', 'index'),        # allow space in url, ^(?P<jobtype>\w+)/ wont take space
-                       )
+    )
 
+urlpatterns+= patterns('',
+    (r'^resetpassword/$', 'django.contrib.auth.views.password_reset'),
+    (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
+    (r'^resetpassword/passwordsent/$', 'django.contrib.auth.views.password_reset_done'),
+    (r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete'),
+)
 urlpatterns+=staticfiles_urlpatterns() 
